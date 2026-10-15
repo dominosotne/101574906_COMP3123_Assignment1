@@ -1,0 +1,14 @@
+const {Router} = require('express');
+const {z} = require('zod');
+const validators = require('../validators');
+const {validate, authenticate} = require('../middleware');
+const users = require('../controllers/users');
+const employees = require('../controllers/employees');
+const userRouter = Router();
+userRouter.post('/signup', validate(validators.signup), users.signup);
+userRouter.post('/login', validate(validators.login), users.login);
+const employeeRouter = Router();
+employeeRouter.use(authenticate);
+employeeRouter.route('/employees').get(validate(z.object({}).strict(), 'query'), employees.list).post(validate(validators.employee), employees.create).delete(validate(z.object({eid: validators.id}).strict(), 'query'), employees.remove);
+employeeRouter.route('/employees/:eid').get(employees.get).put(validate(validators.employee), employees.update);
+module.exports = {userRouter, employeeRouter};

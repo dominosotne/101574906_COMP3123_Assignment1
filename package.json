@@ -1,0 +1,33 @@
+{
+  "name": "comp3123-assignment1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Secure employee REST API",
+  "main": "src/app.js",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node scripts/test.js",
+    "demo": "node scripts/demo.js",
+    "verify:postman": "node scripts/verify-postman.js",
+    "seed:demo": "node scripts/seed-demo.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.1",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^10.2.3",
+    "newman": "^6.2.3",
+    "supertest": "^7.1.4"
+  }
+}

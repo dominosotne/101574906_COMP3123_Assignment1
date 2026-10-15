@@ -1,0 +1,3493 @@
+{
+  "tool": "Newman Postman collection runner",
+  "timestamp": "2026-10-15T19:37:08.697Z",
+  "assertions": 67,
+  "failed": 0,
+  "executions": [
+    {
+      "name": "Health and MongoDB connectivity",
+      "method": "GET",
+      "url": "{{baseUrl}}/health",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "status": "ok",
+          "database": "connected",
+          "uptime_seconds": 3
+        }
+      },
+      "request": null,
+      "responseTime": 25,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 200",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Signup user A",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/signup",
+      "status": 201,
+      "response": {
+        "success": true,
+        "data": {
+          "username": "marker_a",
+          "email": "marker.a@example.test",
+          "_id": "6ad12b58304b1d5b5761f75c",
+          "created_at": "2026-10-15T19:36:56.113Z",
+          "updated_at": "2026-10-15T19:36:56.113Z"
+        }
+      },
+      "request": {
+        "username": "marker_a",
+        "email": "marker.a@example.test",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 294,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=999; t=900"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=99; t=900"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 201",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Signup user B",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/signup",
+      "status": 201,
+      "response": {
+        "success": true,
+        "data": {
+          "username": "marker_b",
+          "email": "marker.b@example.test",
+          "_id": "6ad12b58304b1d5b5761f75e",
+          "created_at": "2026-10-15T19:36:56.460Z",
+          "updated_at": "2026-10-15T19:36:56.460Z"
+        }
+      },
+      "request": {
+        "username": "marker_b",
+        "email": "marker.b@example.test",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 260,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=998; t=900"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=98; t=900"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 201",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Duplicate username",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/signup",
+      "status": 409,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "DUPLICATE_USER",
+          "message": "Username or email already exists"
+        }
+      },
+      "request": {
+        "username": "marker_a",
+        "email": "other@example.test",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 255,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=997; t=900"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=97; t=900"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 409",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Duplicate email",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/signup",
+      "status": 409,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "DUPLICATE_USER",
+          "message": "Username or email already exists"
+        }
+      },
+      "request": {
+        "username": "different",
+        "email": "marker.a@example.test",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 259,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=996; t=900"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=96; t=900"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 409",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Signup invalid email",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/signup",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "email",
+              "message": "Invalid email address"
+            }
+          ]
+        }
+      },
+      "request": {
+        "username": "marker_a",
+        "email": "bad",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 6,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=995; t=899"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=95; t=899"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Signup weak password",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/signup",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "password",
+              "message": "Too small: expected string to have >=10 characters"
+            },
+            {
+              "field": "password",
+              "message": "Invalid string: must match pattern /[A-Z]/"
+            },
+            {
+              "field": "password",
+              "message": "Invalid string: must match pattern /[0-9]/"
+            },
+            {
+              "field": "password",
+              "message": "Invalid string: must match pattern /[^a-zA-Z0-9]/"
+            }
+          ]
+        }
+      },
+      "request": {
+        "username": "marker_a",
+        "email": "marker.a@example.test",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 4,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=994; t=899"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=94; t=899"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Signup missing fields",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/signup",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "username",
+              "message": "Invalid input: expected string, received undefined"
+            },
+            {
+              "field": "email",
+              "message": "Invalid input: expected string, received undefined"
+            },
+            {
+              "field": "password",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          ]
+        }
+      },
+      "request": {},
+      "responseTime": 6,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=993; t=899"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=93; t=899"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Login with username",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "token": "[REDACTED]",
+          "token_type": "Bearer",
+          "user": {
+            "_id": "6ad12b58304b1d5b5761f75c",
+            "username": "marker_a",
+            "email": "marker.a@example.test",
+            "created_at": "2026-10-15T19:36:56.113Z",
+            "updated_at": "2026-10-15T19:36:56.113Z"
+          }
+        }
+      },
+      "request": {
+        "username": "marker_a",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 266,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=992; t=899"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=92; t=899"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 200",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Login with email",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "token": "[REDACTED]",
+          "token_type": "Bearer",
+          "user": {
+            "_id": "6ad12b58304b1d5b5761f75c",
+            "username": "marker_a",
+            "email": "marker.a@example.test",
+            "created_at": "2026-10-15T19:36:56.113Z",
+            "updated_at": "2026-10-15T19:36:56.113Z"
+          }
+        }
+      },
+      "request": {
+        "email": "marker.a@example.test",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 264,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=991; t=899"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=91; t=899"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 200",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Login user B",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "token": "[REDACTED]",
+          "token_type": "Bearer",
+          "user": {
+            "_id": "6ad12b58304b1d5b5761f75e",
+            "username": "marker_b",
+            "email": "marker.b@example.test",
+            "created_at": "2026-10-15T19:36:56.460Z",
+            "updated_at": "2026-10-15T19:36:56.460Z"
+          }
+        }
+      },
+      "request": {
+        "email": "marker.b@example.test",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 256,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=990; t=898"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=90; t=898"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 200",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Invalid login credentials",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "marker_a",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 258,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=989; t=898"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=89; t=898"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Missing login credentials",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "password",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          ]
+        }
+      },
+      "request": {},
+      "responseTime": 4,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=988; t=898"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=88; t=898"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Reject NoSQL injection",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "username",
+              "message": "Invalid input: expected string, received object"
+            }
+          ]
+        }
+      },
+      "request": {
+        "username": {
+          "$ne": null
+        },
+        "password": "[REDACTED]"
+      },
+      "responseTime": 4,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=987; t=897"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=87; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Employee create without token",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "MISSING_TOKEN",
+          "message": "A Bearer token is required"
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "alex@example.test",
+        "position": "Developer",
+        "salary": 65000,
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering"
+      },
+      "responseTime": 4,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=986; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Employee list without token",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "MISSING_TOKEN",
+          "message": "A Bearer token is required"
+        }
+      },
+      "request": null,
+      "responseTime": 4,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=985; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Invalid JWT",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_TOKEN",
+          "message": "Token is invalid or expired"
+        }
+      },
+      "request": null,
+      "responseTime": 5,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=984; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Expired JWT",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "EXPIRED_TOKEN",
+          "message": "Token is invalid or expired"
+        }
+      },
+      "request": null,
+      "responseTime": 4,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=983; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Create employee A",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 201,
+      "response": {
+        "success": true,
+        "data": {
+          "first_name": "Alex",
+          "last_name": "Example",
+          "email": "alex@example.test",
+          "position": "Developer",
+          "salary": 65000,
+          "date_of_joining": "2026-10-01T00:00:00.000Z",
+          "department": "Engineering",
+          "user": "6ad12b58304b1d5b5761f75c",
+          "_id": "6ad12b5b304b1d5b5761f769",
+          "created_at": "2026-10-15T19:36:59.371Z",
+          "updated_at": "2026-10-15T19:36:59.371Z"
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "alex@example.test",
+        "position": "Developer",
+        "salary": 65000,
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering"
+      },
+      "responseTime": 9,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=982; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 201",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Create employee B",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 201,
+      "response": {
+        "success": true,
+        "data": {
+          "first_name": "Blair",
+          "last_name": "Example",
+          "email": "blair@example.test",
+          "position": "Developer",
+          "salary": 65000,
+          "date_of_joining": "2026-10-01T00:00:00.000Z",
+          "department": "Engineering",
+          "user": "6ad12b58304b1d5b5761f75e",
+          "_id": "6ad12b5b304b1d5b5761f76c",
+          "created_at": "2026-10-15T19:36:59.447Z",
+          "updated_at": "2026-10-15T19:36:59.447Z"
+        }
+      },
+      "request": {
+        "first_name": "Blair",
+        "last_name": "Example",
+        "email": "blair@example.test",
+        "position": "Developer",
+        "salary": 65000,
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering"
+      },
+      "responseTime": 9,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=981; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 201",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Missing employee fields",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "first_name",
+              "message": "Invalid input: expected string, received undefined"
+            },
+            {
+              "field": "last_name",
+              "message": "Invalid input: expected string, received undefined"
+            },
+            {
+              "field": "email",
+              "message": "Invalid input: expected string, received undefined"
+            },
+            {
+              "field": "position",
+              "message": "Invalid input: expected string, received undefined"
+            },
+            {
+              "field": "salary",
+              "message": "Invalid input: expected number, received undefined"
+            },
+            {
+              "field": "date_of_joining",
+              "message": "Invalid input: expected string, received undefined"
+            },
+            {
+              "field": "department",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          ]
+        }
+      },
+      "request": {},
+      "responseTime": 7,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=980; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Invalid employee email",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "email",
+              "message": "Invalid email address"
+            }
+          ]
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "invalid",
+        "position": "Developer",
+        "salary": 65000,
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering"
+      },
+      "responseTime": 7,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=979; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Invalid salary",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "salary",
+              "message": "Too small: expected number to be >0"
+            }
+          ]
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "alex@example.test",
+        "position": "Developer",
+        "salary": -1,
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering"
+      },
+      "responseTime": 7,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=978; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Salary string rejected",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "salary",
+              "message": "Invalid input: expected number, received string"
+            }
+          ]
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "alex@example.test",
+        "position": "Developer",
+        "salary": "500",
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering"
+      },
+      "responseTime": 8,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=977; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Invalid calendar date",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "date_of_joining",
+              "message": "Invalid ISO date"
+            }
+          ]
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "alex@example.test",
+        "position": "Developer",
+        "salary": 65000,
+        "date_of_joining": "2026-02-30",
+        "department": "Engineering"
+      },
+      "responseTime": 6,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=976; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Client owner injection rejected",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "",
+              "message": "Unrecognized key: \"user\""
+            }
+          ]
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "alex@example.test",
+        "position": "Developer",
+        "salary": 65000,
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering",
+        "user": "6ad12b4bc2acdb390f4db23c"
+      },
+      "responseTime": 7,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=975; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "List user A employees only",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "_id": "6ad12b5b304b1d5b5761f769",
+            "first_name": "Alex",
+            "last_name": "Example",
+            "email": "alex@example.test",
+            "position": "Developer",
+            "salary": 65000,
+            "date_of_joining": "2026-10-01T00:00:00.000Z",
+            "department": "Engineering",
+            "user": "6ad12b58304b1d5b5761f75c",
+            "created_at": "2026-10-15T19:36:59.371Z",
+            "updated_at": "2026-10-15T19:36:59.371Z"
+          }
+        ]
+      },
+      "request": null,
+      "responseTime": 10,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=974; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 200",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "List user B employees only",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "_id": "6ad12b5b304b1d5b5761f76c",
+            "first_name": "Blair",
+            "last_name": "Example",
+            "email": "blair@example.test",
+            "position": "Developer",
+            "salary": 65000,
+            "date_of_joining": "2026-10-01T00:00:00.000Z",
+            "department": "Engineering",
+            "user": "6ad12b58304b1d5b5761f75e",
+            "created_at": "2026-10-15T19:36:59.447Z",
+            "updated_at": "2026-10-15T19:36:59.447Z"
+          }
+        ]
+      },
+      "request": null,
+      "responseTime": 7,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=973; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 200",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Get own employee A",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees/6ad12b5b304b1d5b5761f769",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "_id": "6ad12b5b304b1d5b5761f769",
+          "first_name": "Alex",
+          "last_name": "Example",
+          "email": "alex@example.test",
+          "position": "Developer",
+          "salary": 65000,
+          "date_of_joining": "2026-10-01T00:00:00.000Z",
+          "department": "Engineering",
+          "user": "6ad12b58304b1d5b5761f75c",
+          "created_at": "2026-10-15T19:36:59.371Z",
+          "updated_at": "2026-10-15T19:36:59.371Z"
+        }
+      },
+      "request": null,
+      "responseTime": 7,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=972; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 200",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Update own employee A",
+      "method": "PUT",
+      "url": "{{baseUrl}}/api/v1/emp/employees/6ad12b5b304b1d5b5761f769",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "_id": "6ad12b5b304b1d5b5761f769",
+          "first_name": "Alex",
+          "last_name": "Example",
+          "email": "alex@example.test",
+          "position": "Developer",
+          "salary": 70000,
+          "date_of_joining": "2026-10-01T00:00:00.000Z",
+          "department": "Engineering",
+          "user": "6ad12b58304b1d5b5761f75c",
+          "created_at": "2026-10-15T19:36:59.371Z",
+          "updated_at": "2026-10-15T19:37:00.352Z"
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "alex@example.test",
+        "position": "Developer",
+        "salary": 70000,
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering"
+      },
+      "responseTime": 14,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=971; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 200",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "A cannot get other owner employee",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees/6ad12b5b304b1d5b5761f76c",
+      "status": 403,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "You cannot access another user employee"
+        }
+      },
+      "request": null,
+      "responseTime": 10,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=970; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 403",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "A cannot update other owner employee",
+      "method": "PUT",
+      "url": "{{baseUrl}}/api/v1/emp/employees/6ad12b5b304b1d5b5761f76c",
+      "status": 403,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "You cannot access another user employee"
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "alex@example.test",
+        "position": "Developer",
+        "salary": 65000,
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering"
+      },
+      "responseTime": 9,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=969; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 403",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "A cannot delete other owner employee",
+      "method": "DELETE",
+      "url": "{{baseUrl}}/api/v1/emp/employees?eid=6ad12b5b304b1d5b5761f76c",
+      "status": 403,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "You cannot access another user employee"
+        }
+      },
+      "request": null,
+      "responseTime": 10,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=968; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 403",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Get own employee B",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees/6ad12b5b304b1d5b5761f76c",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "_id": "6ad12b5b304b1d5b5761f76c",
+          "first_name": "Blair",
+          "last_name": "Example",
+          "email": "blair@example.test",
+          "position": "Developer",
+          "salary": 65000,
+          "date_of_joining": "2026-10-01T00:00:00.000Z",
+          "department": "Engineering",
+          "user": "6ad12b58304b1d5b5761f75e",
+          "created_at": "2026-10-15T19:36:59.447Z",
+          "updated_at": "2026-10-15T19:36:59.447Z"
+        }
+      },
+      "request": null,
+      "responseTime": 7,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=967; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 200",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Update own employee B",
+      "method": "PUT",
+      "url": "{{baseUrl}}/api/v1/emp/employees/6ad12b5b304b1d5b5761f76c",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "_id": "6ad12b5b304b1d5b5761f76c",
+          "first_name": "Alex",
+          "last_name": "Example",
+          "email": "alex@example.test",
+          "position": "Developer",
+          "salary": 70000,
+          "date_of_joining": "2026-10-01T00:00:00.000Z",
+          "department": "Engineering",
+          "user": "6ad12b58304b1d5b5761f75e",
+          "created_at": "2026-10-15T19:36:59.447Z",
+          "updated_at": "2026-10-15T19:37:00.803Z"
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "alex@example.test",
+        "position": "Developer",
+        "salary": 70000,
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering"
+      },
+      "responseTime": 10,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=966; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 200",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "B cannot get other owner employee",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees/6ad12b5b304b1d5b5761f769",
+      "status": 403,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "You cannot access another user employee"
+        }
+      },
+      "request": null,
+      "responseTime": 9,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=965; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 403",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "B cannot update other owner employee",
+      "method": "PUT",
+      "url": "{{baseUrl}}/api/v1/emp/employees/6ad12b5b304b1d5b5761f769",
+      "status": 403,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "You cannot access another user employee"
+        }
+      },
+      "request": {
+        "first_name": "Alex",
+        "last_name": "Example",
+        "email": "alex@example.test",
+        "position": "Developer",
+        "salary": 65000,
+        "date_of_joining": "2026-10-01",
+        "department": "Engineering"
+      },
+      "responseTime": 8,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=964; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 403",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "B cannot delete other owner employee",
+      "method": "DELETE",
+      "url": "{{baseUrl}}/api/v1/emp/employees?eid=6ad12b5b304b1d5b5761f769",
+      "status": 403,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "You cannot access another user employee"
+        }
+      },
+      "request": null,
+      "responseTime": 9,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=963; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 403",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Invalid employee ID",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees/invalid",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_ID",
+          "message": "A valid employee ID is required"
+        }
+      },
+      "request": null,
+      "responseTime": 7,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=962; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Nonexistent employee",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees/000000000000000000000001",
+      "status": 404,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "EMPLOYEE_NOT_FOUND",
+          "message": "Employee not found"
+        }
+      },
+      "request": null,
+      "responseTime": 9,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=961; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 404",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Delete requires employee ID",
+      "method": "DELETE",
+      "url": "{{baseUrl}}/api/v1/emp/employees",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid request data",
+          "details": [
+            {
+              "field": "eid",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          ]
+        }
+      },
+      "request": null,
+      "responseTime": 6,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=960; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Malformed JSON",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/signup",
+      "status": 400,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "MALFORMED_JSON",
+          "message": "Request body must be valid JSON"
+        }
+      },
+      "request": "{\"username\":",
+      "responseTime": 5,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=959; t=895"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"100-in-15min\"; r=86; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 400",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Unknown route",
+      "method": "GET",
+      "url": "{{baseUrl}}/missing",
+      "status": 404,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "ROUTE_NOT_FOUND",
+          "message": "Route not found"
+        }
+      },
+      "request": null,
+      "responseTime": 4,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 404",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Delete own employee A",
+      "method": "DELETE",
+      "url": "{{baseUrl}}/api/v1/emp/employees?eid=6ad12b5b304b1d5b5761f769",
+      "status": 204,
+      "response": "(empty body)",
+      "request": null,
+      "responseTime": 10,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=958; t=895"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 204",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Deleted employee is absent",
+      "method": "GET",
+      "url": "{{baseUrl}}/api/v1/emp/employees/6ad12b5b304b1d5b5761f769",
+      "status": 404,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "EMPLOYEE_NOT_FOUND",
+          "message": "Employee not found"
+        }
+      },
+      "request": null,
+      "responseTime": 7,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=957; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 404",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Delete own employee B",
+      "method": "DELETE",
+      "url": "{{baseUrl}}/api/v1/emp/employees?eid=6ad12b5b304b1d5b5761f76c",
+      "status": 204,
+      "response": "(empty body)",
+      "request": null,
+      "responseTime": 7,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=956; t=895"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 204",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 1",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 264,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=999; t=900"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=19; t=900"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 2",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 257,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=998; t=900"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=18; t=900"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 3",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 255,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=997; t=900"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=17; t=900"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 4",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 257,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=996; t=899"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=16; t=899"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 5",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 254,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=995; t=899"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=15; t=899"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 6",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 256,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=994; t=899"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=14; t=899"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 7",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 256,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=993; t=899"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=13; t=899"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 8",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 265,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=992; t=898"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=12; t=898"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 9",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 256,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=991; t=898"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=11; t=898"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 10",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 253,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=990; t=898"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=10; t=898"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 11",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 261,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=989; t=897"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=9; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 12",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 256,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=988; t=897"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=8; t=897"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 13",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 258,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=987; t=896"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=7; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 14",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 256,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=986; t=896"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=6; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 15",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 255,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=985; t=896"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=5; t=896"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 16",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 253,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=984; t=895"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=4; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 17",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 254,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=983; t=895"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=3; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 18",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 257,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=982; t=895"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=2; t=895"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 19",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 253,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=981; t=894"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=1; t=894"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 20",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 401,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "INVALID_CREDENTIALS",
+          "message": "Invalid username/email or password"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 254,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=980; t=894"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=0; t=894"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 401",
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Rate limit attempt 21",
+      "method": "POST",
+      "url": "{{baseUrl}}/api/v1/user/login",
+      "status": 429,
+      "response": {
+        "success": false,
+        "error": {
+          "code": "RATE_LIMITED",
+          "message": "Too many requests; retry after the rate limit window"
+        }
+      },
+      "request": {
+        "username": "nobody",
+        "password": "[REDACTED]"
+      },
+      "responseTime": 5,
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"1000-in-15min\"; r=979; t=894"
+        },
+        {
+          "key": "RateLimit",
+          "value": "\"20-in-15min\"; r=0; t=894"
+        },
+        {
+          "key": "Retry-After",
+          "value": "894"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "assertions": [
+        {
+          "assertion": "HTTP 429",
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

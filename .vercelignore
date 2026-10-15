@@ -1,0 +1,7 @@
+node_modules
+.env
+logs
+test-results
+scripts
+.npm-cache
+evidence

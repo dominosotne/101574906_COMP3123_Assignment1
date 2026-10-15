@@ -1,0 +1,108 @@
+{
+  "database": "comp3123_assignment1",
+  "timestamp": "2026-10-15T19:38:40.047Z",
+  "checks": [
+    {
+      "name": "Atlas health check",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "Atlas user A login",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "Atlas user B email login",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "Atlas A scoped list",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "Atlas B scoped list",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "Atlas A cross-user GET rejected",
+      "status": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "Atlas A cross-user PUT rejected",
+      "status": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "Atlas A cross-user DELETE rejected",
+      "status": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "Atlas B cross-user GET rejected",
+      "status": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "Atlas B cross-user PUT rejected",
+      "status": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "Atlas B cross-user DELETE rejected",
+      "status": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "Atlas employee create",
+      "status": 201,
+      "expected": 201,
+      "passed": true
+    },
+    {
+      "name": "Atlas employee get",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "Atlas employee update",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "Atlas employee delete",
+      "status": 204,
+      "expected": 204,
+      "passed": true
+    },
+    {
+      "name": "Atlas deleted employee absent",
+      "status": 404,
+      "expected": 404,
+      "passed": true
+    },
+    {
+      "name": "Atlas protected list requires JWT",
+      "status": 401,
+      "expected": 401,
+      "passed": true
+    }
+  ]
+}
