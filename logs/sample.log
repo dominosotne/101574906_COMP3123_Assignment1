@@ -1,0 +1,9 @@
+{"timestamp":"2026-10-15T19:30:37.047Z","event":"signup_success","userId":"6ad129dd99a662d553b6bc6f"}
+{"timestamp":"2026-10-15T19:30:38.103Z","event":"login_success","userId":"6ad129dd99a662d553b6bc6f"}
+{"timestamp":"2026-10-15T19:30:38.869Z","event":"login_failure"}
+{"timestamp":"2026-10-15T19:30:38.910Z","event":"employee_created","userId":"6ad129dd99a662d553b6bc6f","employeeId":"6ad129de99a662d553b6bc7c"}
+{"timestamp":"2026-10-15T19:30:38.987Z","event":"employee_updated","employeeId":"6ad129de99a662d553b6bc7c"}
+{"timestamp":"2026-10-15T19:30:39.338Z","event":"employee_deleted","employeeId":"6ad129de99a662d553b6bc7c"}
+{"timestamp":"2026-10-15T19:30:39.359Z","event":"application_error","status":500,"code":"INTERNAL_ERROR","method":"GET","path":"/api/v1/emp/employees"}
+{"timestamp":"2026-10-15T19:37:08.648Z","event":"request_rejected","status":429,"code":"RATE_LIMITED","method":"POST","path":"/api/v1/user/login"}
+{"timestamp":"2026-10-15T19:37:08.649Z","event":"request","method":"POST","path":"/api/v1/user/login","status":429,"durationMs":2}

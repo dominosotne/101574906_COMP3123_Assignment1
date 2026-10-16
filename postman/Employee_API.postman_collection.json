@@ -3205,7 +3205,28 @@
       "event": []
     }
   ],
-  "event": [],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if (pm.info.requestName === \"Signup user A\" || !pm.collectionVariables.get(\"runTag\")) {",
+          "  pm.collectionVariables.set(\"runTag\", Date.now().toString(36));",
+          "}",
+          "const tag = pm.collectionVariables.get(\"runTag\");",
+          "if (pm.request.body && pm.request.body.mode === \"raw\") {",
+          "  const raw = pm.request.body.raw",
+          "    .replaceAll('\"marker_a\"', `\"marker_a_${tag}\"`)",
+          "    .replaceAll('\"marker_b\"', `\"marker_b_${tag}\"`)",
+          "    .replaceAll('\"marker.a@example.test\"', `\"marker.a.${tag}@example.test\"`)",
+          "    .replaceAll('\"marker.b@example.test\"', `\"marker.b.${tag}@example.test\"`);",
+          "  pm.request.body.update({mode: \"raw\", raw});",
+          "}"
+        ]
+      }
+    }
+  ],
   "variable": [
     {
       "type": "string",

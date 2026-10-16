@@ -7,13 +7,13 @@ This is an employee management API built with Node.js, Express, MongoDB and Mong
 Use Node.js 22 or newer and MongoDB locally or through Atlas.
 
 ```powershell
-git clone https://github.com/YOUR_USERNAME/StudentNumber_COMP3123_Assignment1.git
-cd StudentNumber_COMP3123_Assignment1
+git clone https://github.com/dominosotne/101574906_COMP3123_Assignment1.git
+cd 101574906_COMP3123_Assignment1
 npm ci
 Copy-Item .env.example .env
 ```
 
-Replace the repository URL with your own. Set `MONGODB_URI` and `JWT_SECRET` in `.env`. The secret must be random and at least 32 characters. Start the local MongoDB service if using the example local URI. Then run:
+Set `MONGODB_URI` and `JWT_SECRET` in `.env`. The secret must be random and at least 32 characters. Start the local MongoDB service if using the example local URI. Then run:
 
 ```powershell
 npm start
@@ -88,7 +88,7 @@ Employee POST and PUT request:
 }
 ```
 
-PUT requires all editable fields. Salary must be a positive JSON number up to 1 billion. Dates use a valid `YYYY-MM-DD` calendar date. Unknown fields are rejected. Usernames allow 3–40 letters, digits or underscores. Passwords require 10–72 characters, up to 72 UTF-8 bytes, with uppercase, lowercase, a digit and a symbol.
+PUT requires all editable fields. Salary must be a positive JSON number up to 1 billion. Dates use a valid `YYYY-MM-DD` calendar date. Unknown fields are rejected. Usernames allow 3вЂ“40 letters, digits or underscores. Passwords require 10вЂ“72 characters, up to 72 UTF-8 bytes, with uppercase, lowercase, a digit and a symbol.
 
 Successful responses use `{"success":true,"data":...}`. Lists return an array. DELETE returns an empty body. Errors use `{"success":false,"error":{"code":"...","message":"..."}}`, with field details for validation errors.
 
@@ -131,9 +131,9 @@ npm run verify:postman
 
 The first command runs Supertest against an isolated real MongoDB server. It checks successful operations, validation, duplicate accounts, JWT errors, owner filtering, access in both directions, rate limits, hashing and safe database failures. The second runs the exported Postman collection through Newman. Neither command uses or clears your Atlas database. Newman is a development tool; its dependency audit currently reports advisories. `npm audit --omit=dev` reported zero production vulnerabilities during verification.
 
-Import `postman/Employee_API.postman_collection.json` into Postman. Set `baseUrl` and run requests in order. The main suite expects a fresh database and `AUTH_RATE_LIMIT=100`; run the rate-limit folder separately after restarting with `AUTH_RATE_LIMIT=20`. Tokens and employee IDs are saved as collection variables. For the expired-token case, set `expiredToken` to an expired JWT generated with your local secret.
+Import `postman/Employee_API.postman_collection.json` into Postman. Set `baseUrl` and run requests in order. The collection creates uniquely named test users for each main-suite run. For repeated local main-suite runs, use `AUTH_RATE_LIMIT=100`; run the rate-limit folder separately after restarting with `AUTH_RATE_LIMIT=20`. Tokens and employee IDs are saved as collection variables. For the expired-token case, set `expiredToken` to an expired JWT generated with your local secret.
 
-The API screenshots show real Newman request/response results displayed in an evidence viewer. They are labelled with their source. The Atlas screenshots show the live collections. Automated test details are included under `evidence`.
+API_Test_Evidence.docx contains Postman desktop screenshots of the endpoint and error checks, live Atlas collections, and Vercel deployment evidence. Supplemental isolated test results, security headers and local logs are labelled with their source. Automated test details are included under `evidence`.
 
 Demonstration accounts are `marker_a` / `marker.a@example.test` and `marker_b` / `marker.b@example.test`, both using the non-sensitive password `DemoOnly!3123Pass`. These accounts and one employee each were created in the configured Atlas database. To create them on another running API, use `npm run seed:demo`. The script does not delete data or change existing credentials. Never reuse this password for a real account.
 
@@ -141,6 +141,12 @@ Demonstration accounts are `marker_a` / `marker.a@example.test` and `marker_b` /
 
 Push the project to your own public `StudentNumber_COMP3123_Assignment1` repository and import it at https://vercel.com/new. Vercel detects Express through `src/app.js`; no static output directory or frontend build command is needed. Set `MONGODB_URI` and a fresh `JWT_SECRET` in the Vercel environment variables. Configure Atlas network access for the hosting environment. Deploy, check `/health`, then repeat the Postman requests with the deployed URL as `baseUrl`.
 
-The project is ready for deployment, but no live Vercel URL has been created. GitHub upload, Vercel deployment and D2L submission are to be completed separately.
+Live API: https://101574906-comp-3123-assignment1.vercel.app
+
+Health check: https://101574906-comp-3123-assignment1.vercel.app/health
+
+The API is deployed on Vercel and connected to MongoDB Atlas. A hosted verification run passed 25 checks, including signup, username/email login, CRUD, validation, expired JWT rejection and cross-user GET/PUT/DELETE denial in both directions. Results are in `evidence/vercel-verification.json`.
+
+Atlas permits connections from all IPv4 addresses for the shared Vercel hosting environment; database authentication and TLS are still required. A restricted egress network and a shared rate-limit store are appropriate for a production service.
 
 Reference: https://vercel.com/kb/guide/ship-a-express-app-on-vercel

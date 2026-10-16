@@ -1,0 +1,158 @@
+{
+  "baseUrl": "https://101574906-comp-3123-assignment1.vercel.app",
+  "verifiedAt": "2026-10-16T00:58:51.319Z",
+  "passed": 25,
+  "failed": 0,
+  "results": [
+    {
+      "label": "Health and database",
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "label": "Signup A",
+      "expected": 201,
+      "actual": 201,
+      "pass": true
+    },
+    {
+      "label": "Signup B",
+      "expected": 201,
+      "actual": 201,
+      "pass": true
+    },
+    {
+      "label": "Duplicate user",
+      "expected": 409,
+      "actual": 409,
+      "pass": true
+    },
+    {
+      "label": "Login username",
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "label": "Login email",
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "label": "Invalid credentials",
+      "expected": 401,
+      "actual": 401,
+      "pass": true
+    },
+    {
+      "label": "Missing token",
+      "expected": 401,
+      "actual": 401,
+      "pass": true
+    },
+    {
+      "label": "Expired JWT",
+      "expected": 401,
+      "actual": 401,
+      "pass": true
+    },
+    {
+      "label": "Create A",
+      "expected": 201,
+      "actual": 201,
+      "pass": true
+    },
+    {
+      "label": "Create B",
+      "expected": 201,
+      "actual": 201,
+      "pass": true
+    },
+    {
+      "label": "Invalid salary",
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "label": "Owner injection rejected",
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "label": "Own list A",
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "label": "Own detail",
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "label": "Update own",
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "label": "A to B GET denied",
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "label": "A to B PUT denied",
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "label": "A to B DELETE denied",
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "label": "B to A GET denied",
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "label": "B to A PUT denied",
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "label": "B to A DELETE denied",
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "label": "Delete own A",
+      "expected": 204,
+      "actual": 204,
+      "pass": true
+    },
+    {
+      "label": "Deleted absent",
+      "expected": 404,
+      "actual": 404,
+      "pass": true
+    },
+    {
+      "label": "Delete own B",
+      "expected": 204,
+      "actual": 204,
+      "pass": true
+    }
+  ]
+}

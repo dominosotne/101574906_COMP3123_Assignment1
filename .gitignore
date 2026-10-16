@@ -3,6 +3,7 @@ node_modules/
 .env.*
 !.env.example
 logs/*.log
+!logs/sample.log
 test-results/
 .vercel/
 coverage/
